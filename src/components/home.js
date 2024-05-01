@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./styles.css";
+import { Link } from 'react-router-dom'
 
 const RepoList = () => {
   //State management
@@ -19,7 +20,8 @@ const RepoList = () => {
   return (
     <div className="users-cont">
       {repos ? (
-        repos.map((repo) => (
+        repos.map((repo) => {
+          return(
           <div className="user-card-cont" key={repo.id}>
             <img
               src={repo.owner.avatar_url}
@@ -36,11 +38,15 @@ const RepoList = () => {
             <button>
               <button>View Repo</button>
             </button>
-          </div>
-        ))
-      ) : (
+          </div> 
+        )
+      })
+      )
+      : (
         <h1>Loading...</h1>
       )}
+      {repos && <Link to='/users'>Users</Link>}
+    
     </div>
   );
 };
