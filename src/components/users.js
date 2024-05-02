@@ -1,7 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 const Users = () => {
+  const navigate = useNavigate();
+  function buttonOnClick(url) { 
+    navigate(url);
+  }
   //State management
   const [gitUsers, setGitUsers] = useState([]);
 
@@ -20,6 +28,7 @@ const Users = () => {
       {" "}
       <div className="users-cont">
         {gitUsers.map((user) => (
+  
           <div className="user-card-cont" key={user.id}>
             <img
               src={user.avatar_url}
@@ -27,7 +36,14 @@ const Users = () => {
               className="user-avatar"
             />
             <span className="username">{user.login}</span>
-            <button className="view-btn">View User</button>
+            
+              
+              <button className="view-btn" onClick={() => {
+                buttonOnClick(`/users/user/${user.login}`)
+              }
+               
+              }>View User</button>
+      
           </div>
         ))}
       </div>

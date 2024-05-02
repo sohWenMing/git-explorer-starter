@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./styles.css";
+import { useNavigate } from "react-router-dom";
 
 const SearchUser = () => {
+  const navigate = useNavigate()
   const [username, setUsername] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [loading, setLoading] = useState("Submit");
@@ -13,7 +15,7 @@ const SearchUser = () => {
       `https://api.github.com/users/${username}`
     );
     if (response.status === 200) {
-      // REDIRECT
+      navigate(`/users/user/${username}`)
     }
     return response;
   };
